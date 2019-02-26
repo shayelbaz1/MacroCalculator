@@ -1,0 +1,218 @@
+<!-- HTML -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Macro Calculator</title>
+
+    <!-- under the title we add the CSS -->
+    <link href="node_modules\bootstrap\dist\css\bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="node_modules\bootstrap-slider\dist\css\bootstrap-slider.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- CSS file -->
+    <style>
+        [v-cloak] {display:none;}
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+    </style>
+
+    <!-- end head -->
+</head>
+
+
+<body>
+    <!-- Main DIV -->
+    <div id="main" class="text-center" v-cloak>
+        <!-- Gender Selection -->
+        <div v-if="phase==='genderSelection'">
+            <form>
+                <fieldset id="pageGender">
+                    <div class="containter containter-narrow page text-center">
+                        <div class="well semi-trans">
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1 p-0" style="background: #fff">
+                                    <h2 class="text-center text-aqua my-4 p-2">Are You a Woman or a Man?</h2>
+                                    <!-- IMAGE -->
+                                    <div class="containter p-3 mb-5">
+                                        <div class="row">
+                                            <div class="col-6 col-md-4 offset-md-2 mx-auto">
+                                                <img class="img-fluid btn" src="original-man.png" v-on:click="selectGender('male')">
+                                            </div>
+                                            <div class="col-6 col-md-4 mx-auto">
+                                                <img class="img-fluid btn" src="original-woman.png" v-on:click="selectGender('female')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <!-- Age Range -->
+    <br />
+    <div v-if="phase==='genderSelection'" class="containter">
+        <div class="d-flex justify-content-center">
+            <h2>What Age Range Are You?</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button v-on:click="selectAgeRange('teen')" class="btn btn-primary">Teen</button>
+            <button v-on:click="selectAgeRange('20')" class="btn btn-primary">20</button>
+            <button v-on:click="selectAgeRange('30')" class="btn btn-primary">30</button>
+            <button v-on:click="selectAgeRange('40')" class="btn btn-primary">40</button>
+            <button v-on:click="selectAgeRange('50')" class="btn btn-primary">50</button>
+            <button v-on:click="selectAgeRange('60')" class="btn btn-primary">60</button>
+        </div>
+    </div>
+    <!-- Height -->
+    <br />
+    <div v-if="phase==='genderSelection'" class="containter">
+        <br />
+        <div class="d-flex justify-content-center">
+            <h2>What Height Range Are You?</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active">
+                    metric
+                    <input type="radio" name="" id="" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-primary">
+                    Imperial
+                    <input type="radio" name="" id="" autocomplete="off">
+                </label>
+                <label class="btn btn-primary">
+                    <input type="text" name="" id="" autocomplete="off">
+                </label>
+            </div>
+            <br />
+        </div>
+        <div class="d-flex justify-content-center">
+            <input id="heightSlider" />
+            <button class="btn btn-primary" id="sliderButton">get slider value</button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" v-on:click="selectedHeight(12)">Continue</button>
+        </div>
+    </div>
+
+
+
+    <!-- Weight -->
+    <br />
+    <div v-if="phase==='genderSelection'" class="containter">
+        <br />
+        <div class="d-flex justify-content-center">
+            <h2>How much you weight?</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+            <input id="weightSlider" />
+            <button class="btn btn-primary" id="weightButton">get slider value</button>
+
+            <button class="btn btn-primary" v-on:click="selectedHeight('selectedHeight')">Continue</button>
+        </div>
+    </div>
+
+    <!-- Active Level -->
+    <br />
+    <div v-if="phase==='genderSelection'" class="containter">
+        <br />
+        <div class="d-flex justify-content-center">
+            <h2>How Active are you?</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button v-on:click="selectActive('LIGHTLY')" class="btn btn-primary">LIGHTLY ACTIVE</button>
+            <button v-on:click="selectActive('MODERLY')" class="btn btn-primary">MODERLY ACTIVE</button>
+            <button v-on:click="selectActive('HIGHLY')" class="btn btn-primary">HIGHLY ACTIVE</button>
+        </div>
+
+    </div>
+
+    <!-- Current Status -->
+    <br />
+    <div v-if="phase==='genderSelection'" class="containter">
+        <br />
+        <div class="d-flex justify-content-center">
+            <h3>Which Option Best Describe You?</h3>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button v-on:click="selectOption('OVERWEIGHT')" class="btn btn-primary">OVERWEIGHT</button>
+            <button v-on:click="selectOption('SKINNY')" class="btn btn-primary">SKINNY FAT</button>
+            <button v-on:click="selectOption('INSHAPE')" class="btn btn-primary">IN SHAPE</button>
+        </div>
+    </div>
+
+
+    <!-- Script Files refernces -->
+    <script src="node_modules\jquery\dist\jquery.js"></script>
+    <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
+    <script src="node_modules\vue\dist\vue.js"></script>
+    <script src="node_modules\bootstrap-slider\dist\bootstrap-slider.js"></script>
+    <script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+
+
+
+
+
+    <!-- VUE file -->
+    <script>
+        // Variables
+        var heightSlider = null;
+        var weightSlider = null;
+
+        // JQuery Function
+        $(function () {
+            heightSlider = $("#heightSlider").slider();
+            weightSlider = $("#weightSlider").slider();
+
+            $("#sliderbutton").on("click", function () {
+                alert(heightSlider.slider('getValue'))
+            });
+        })
+
+        // new VUE App element hold the id div, and data get the variables.
+        var app = new Vue({
+
+            // Variables
+            el: '#main',
+            data: {
+                phase: "genderSelection",
+                gender: null,
+                ageRange: null,
+                height: null,
+            },
+
+            // Functions
+            methods: {
+                // title: function(theItem){variable = new asign }
+                selectGender: function (selectedGender) {
+                    this.gender = selectedGender;
+                    alert("Your Gender Is: " + this.gender);
+                    this.phase = "genderSelection"
+                },
+                selectAgeRange: function (selectedAgeRange) {
+                    this.ageRange = selectedAgeRange;
+                    alert("Your Gender Is: " + this.age);
+                    this.phase = "genderSelection"
+
+                    alert("your gender is: " + this.gender + ". your age range is: " + this.ageRange);
+                },
+                selectHeight: function (selectedHeight) {
+                    this.height = selectedHeight;
+                    this.phase = "genderSelection"
+                },
+            }
+        })
+
+    </script>
+
+
+</body>
+
+</html>
